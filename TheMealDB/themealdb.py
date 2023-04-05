@@ -23,7 +23,8 @@ def save_to_json_file(data, file_path):
             f.write(",\n")
         json.dump(data, f, indent=2)
 
-if __name__ == "__main__":
+def get_mealdb():
+    if __name__ == "__main__":
     output_dir = "../output"
     os.makedirs(output_dir, exist_ok=True)
 
