@@ -24,11 +24,14 @@ def get_recipes():
 
 def save_to_json_file(data, file_path):
     file_exists = os.path.isfile(file_path)
+    
+    recipes = data.get("results", [])
 
     with open(file_path, "a" if file_exists else "w") as f:
         if file_exists:
             f.write(",\n")
-        json.dump(data, f, indent=2)
+        json.dump(recipes, f, indent=2)
+
 
 def get_tasty():
     if __name__ == "__main__":

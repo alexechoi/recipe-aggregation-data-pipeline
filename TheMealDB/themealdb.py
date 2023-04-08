@@ -17,23 +17,25 @@ def get_random_recipe():
 
 def save_to_json_file(data, file_path):
     file_exists = os.path.isfile(file_path)
+    
+    meals = data.get("meals", [])
 
     with open(file_path, "a" if file_exists else "w") as f:
         if file_exists:
             f.write(",\n")
-        json.dump(data, f, indent=2)
+        json.dump(meals, f, indent=2)
 
 def get_mealdb():
     if __name__ == "__main__":
-    output_dir = "../output"
-    os.makedirs(output_dir, exist_ok=True)
+        output_dir = "../output"
+        os.makedirs(output_dir, exist_ok=True)
 
-    output_file = os.path.join(output_dir, "themealdb-output.json")
+        output_file = os.path.join(output_dir, "themealdb-output.json")
 
-    random_recipe = get_random_recipe()
-    
-    if random_recipe:
-        save_to_json_file(random_recipe, output_file)
-        print("Random recipe saved to:", output_file)
-    else:
-        print("No recipe found.")
+        random_recipe = get_random_recipe()
+        
+        if random_recipe:
+            save_to_json_file(random_recipe, output_file)
+            print("Recipes saved to:", output_file)
+        else:
+            print("No recipes found.")

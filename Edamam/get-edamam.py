@@ -22,10 +22,18 @@ def get_recipes_by_random_character():
 def save_to_json_file(data, file_path):
     file_exists = os.path.isfile(file_path)
 
+    recipes = data.get("hits", [])
+    flattened_recipes = []
+    for recipe in recipes:
+        flattened_recipe = recipe["recipe"].copy()
+        flattened_recipe["ingredients"] = recipe["recipe"]["ingredientLines"]
+        flattened_recipes.append(flattened_recipe)
+
     with open(file_path, "a" if file_exists else "w") as f:
         if file_exists:
             f.write(",\n")
-        json.dump(data, f, indent=2)
+        json.dump(flattened_recipes, f, indent=2)
+
 
 def edamam_retrieve():
     if __name__ == "__main__":
