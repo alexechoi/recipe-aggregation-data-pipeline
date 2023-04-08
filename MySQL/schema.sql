@@ -1,5 +1,5 @@
 CREATE TABLE `recipe` (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `title` varchar(255),
   `source_url` varchar(255),
   `image_url` varchar(255),
@@ -14,7 +14,7 @@ CREATE TABLE `recipe` (
 );
 
 CREATE TABLE `ingredient` (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255)
 );
 
@@ -26,14 +26,14 @@ CREATE TABLE `recipe_ingredient` (
 );
 
 CREATE TABLE `instruction` (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `recipe_id` int,
   `position` int,
   `text` text
 );
 
 CREATE TABLE `nutrition` (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `recipe_id` int,
   `calories` int,
   `protein` int,
