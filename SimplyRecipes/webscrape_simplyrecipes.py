@@ -59,7 +59,7 @@ def get_recipe_data(root_url, limit=2):
 
             recipes.append(recipe)
 
-        output_path = '../output/simplyrecipes.json'
+        output_path = '../output/simplyrecipes-output.json'
 
         # Check if the output directory exists, if not create it
         output_dir = os.path.dirname(output_path)
