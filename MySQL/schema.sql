@@ -9,8 +9,8 @@ CREATE TABLE `recipe` (
   `cook_time_minutes` int,
   `total_time_minutes` int,
   `yields` varchar(255),
-  `created_at` int,
-  `updated_at` int
+  `created_at` datetime,
+  `updated_at` datetime
 );
 
 CREATE TABLE `ingredient` (
