@@ -44,8 +44,47 @@ button {
     cursor: pointer;
 }
 
+#back-button {
+    background-color: #000000;
+}
+
 .result {
     margin-top: 20px;
     text-align: center;
     font-size: 18px;
+}
+
+.model-selection {
+    display: flex;
+    justify-content: space-around;
+}
+
+.model-option {
+    width: 150px;
+    height: 150px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.model-option i {
+    margin-bottom: 30px;
+}
+
+.model-option p {
+    text-align: center;
+    margin: 0;
+}
+
+.model-option:hover {
+    background-color: #ddd;
+}
+
+.icon {
+    font-size: 240px;
 }
