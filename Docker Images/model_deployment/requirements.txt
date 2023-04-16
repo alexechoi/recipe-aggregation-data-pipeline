@@ -1,0 +1,6 @@
+Flask
+gunicorn
+joblib
+scikit-learn
+google-cloud-storage
+flask-cors
