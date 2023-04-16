@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes Model Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Recipes Model Test</h1>
+        <form id="prediction-form">
+            <label for="feature1">Number of ingredients:</label>
+            <input type="number" id="feature1" required>
+
+            <label for="feature2">Preparation Time (in minutes):</label>
+            <input type="number" id="feature2" required>
+
+            <label for="feature3">Cooking Time (in minutes):</label>
+            <input type="number" id="feature3" required>
+
+            <label for="feature4">Protein (in grams):</label>
+            <input type="number" id="feature4" required>
+
+            <label for="feature5">Protein (in grams):</label>
+            <input type="number" id="feature5" required>
+
+            <label for="feature6">Fat (in grams):</label>
+            <input type="number" id="feature6" required>
+
+            <label for="feature7">Cabohydrates (in grams):</label>
+            <input type="number" id="feature7" required>
+
+            <button type="submit">Predict</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const feature1 = parseInt(document.getElementById('feature1').value);
+            const feature2 = parseInt(document.getElementById('feature2').value);
+            const feature3 = parseInt(document.getElementById('feature3').value);
+            const feature4 = parseInt(document.getElementById('feature4').value);
+            const feature5 = parseInt(document.getElementById('feature5').value);
+            const feature6 = parseInt(document.getElementById('feature6').value);
+            const feature7 = parseInt(document.getElementById('feature7').value);
+
+            const response = await fetch('https://recipes-model-v1-kon5xeyahq-ue.a.run.app/predict_random_forest', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ input_features: [feature1, feature2, feature3, feature4, feature5, feature6, feature7] }) 
+            });
+
+            if (response.ok) {
+                const prediction = await response.json();
+                document.getElementById('result').innerHTML = 'Prediction: ' + prediction;
+            } else {
+                document.getElementById('result').innerHTML = 'Error: ' + response.statusText;
+            }
+        });
+    </script>
+</body>
+</html>
