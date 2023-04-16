@@ -1,15 +1,16 @@
 import joblib
 from flask import Flask, request, jsonify
 import logging
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 linear_regression_model = joblib.load('linear_regression_model.pkl')
 random_forest_model = joblib.load('random_forest_model.pkl')
 
 @app.route('/predict_linear_regression', methods=['POST'])
+@cross_origin()
 def predict_linear_regression():
     try:
         data = request.get_json()
@@ -21,6 +22,7 @@ def predict_linear_regression():
         return str(e), 500
 
 @app.route('/predict_random_forest', methods=['POST'])
+@cross_origin()
 def predict_random_forest():
     data = request.get_json()
     input_features = [data['input_features']]
