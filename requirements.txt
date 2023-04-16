@@ -1,5 +1,9 @@
 beautifulsoup4
 google-cloud-storage
 mysql-connector-python
+mysql-connector-python neo4j
+pandas pymysql
+pandas scikit-learn
 pymysql
 requests
+tqdm
