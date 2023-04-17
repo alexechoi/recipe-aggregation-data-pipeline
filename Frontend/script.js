@@ -59,10 +59,11 @@ document.getElementById('prediction-form').addEventListener('submit', async func
 
     if (response.ok) {
         const prediction = await response.json();
-        document.getElementById('result').innerHTML = 'Prediction: ' + prediction;
+        const unit = selectedModel === 'random_forest' ? ' kcal' : ' minutes';
+        document.getElementById('result').innerHTML = 'Prediction: ' + prediction + unit;
     } else {
-        document.getElementById('result').innerHTML = 'Error: ' + response.statusText;
-    }
+    document.getElementById('result').innerHTML = 'Error: ' + response.statusText;
+}
 });
 
 // Back Button
@@ -81,6 +82,7 @@ const modelSelectionDiv = document.getElementById('model-selection');
 const predictionForm = document.getElementById('prediction-form');
 
 linearRegressionOption.addEventListener('click', () => {
+    document.querySelector('h1').innerText = 'Linear Regression Model (Cook Time)';
     modelSelectionDiv.style.display = 'none';
     predictionForm.style.display = 'block';
     showLinearRegressionFeatures();
@@ -91,6 +93,7 @@ linearRegressionOption.addEventListener('click', () => {
 });
 
 randomForestOption.addEventListener('click', () => {
+    document.querySelector('h1').innerText = 'Random Forest Model (Calories)';
     modelSelectionDiv.style.display = 'none';
     predictionForm.style.display = 'block';
     showRandomForestFeatures();
