@@ -2,12 +2,27 @@ import joblib
 from flask import Flask, request, jsonify
 import logging
 from flask_cors import CORS, cross_origin
+from google.cloud import storage
+import io
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-linear_regression_model = joblib.load('linear_regression_model.pkl')
-random_forest_model = joblib.load('random_forest_model.pkl')
+# Function to load a model from a GCS bucket
+def load_model_from_gcs(bucket_name, model_path):
+    storage_client = storage.Client.create_anonymous_client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(model_path)
+    model_data = blob.download_as_bytes()
+    model = joblib.load(io.BytesIO(model_data))
+    return model
+
+bucket_name = 'data-engineering-recipe-serving'
+linear_regression_model_path = 'models/linear_regression_model.pkl'
+random_forest_model_path = 'models/random_forest_model.pkl'
+
+linear_regression_model = load_model_from_gcs(bucket_name, linear_regression_model_path)
+random_forest_model = load_model_from_gcs(bucket_name, random_forest_model_path)
 
 @app.route('/predict_linear_regression', methods=['POST'])
 @cross_origin()
