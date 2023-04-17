@@ -7,14 +7,14 @@ from bs4 import BeautifulSoup
 from google.cloud import storage
 from flask import jsonify
 
-E_APP_ID = "E_APP_ID"  # EDAMAM
-E_APP_KEY = "E_APP_KEY"
-E_BASE_URL = "E_BASE_URL"
+E_APP_ID = "CREDENTIAL"  # EDAMAM
+E_APP_KEY = "CREDENTIAL"
+E_BASE_URL = "https://api.edamam.com/search"
 
-R_API_KEY = "R_API_KEY"
-R_BASE_URL = "R_BASE_URL"
+R_API_KEY = "CREDENTIAL"
+R_BASE_URL = "https://tasty.p.rapidapi.com/recipes/list"
 
-M_API_KEY = "M_API_KEY "
+M_API_KEY = "CREDENTIAL"
 M_BASE_URL = "https://www.themealdb.com/api/json/v1/{}/".format(M_API_KEY)
 
 # Save to Bucket
@@ -40,9 +40,7 @@ def get_recipes_by_random_character():
         print("Error: Unable to fetch recipes. Status code:", response.status_code)
         return None
 
-def save_to_json_file(data, file_path):
-    file_exists = os.path.isfile(file_path)
-
+def save_to_json_file_edamam(data):
     recipes = data.get("hits", [])
     flattened_recipes = []
     for recipe in recipes:
@@ -50,19 +48,19 @@ def save_to_json_file(data, file_path):
         flattened_recipe["ingredients"] = recipe["recipe"]["ingredientLines"]
         flattened_recipes.append(flattened_recipe)
 
-    with open(file_path, "a" if file_exists else "w") as f:
-        if file_exists:
-            f.write(",\n")
-        json.dump(flattened_recipes, f, indent=2)
-
+    return flattened_recipes
 
 def edamam_retrieve():
     recipes = get_recipes_by_random_character()
 
     if recipes:
+        # Save the recipes to a JSON file and get the modified data
+        modified_recipes = save_to_json_file_edamam(recipes)
+
+        # Save the modified data to the bucket
         bucket_name = "BUCKET_NAME"  # Replace with your bucket name
         destination_blob_name = "edamam-output.json"
-        save_to_bucket(recipes, bucket_name, destination_blob_name)
+        save_to_bucket(modified_recipes, bucket_name, destination_blob_name)
     else:
         print("No recipes found.")
         
@@ -71,6 +69,9 @@ def edamam_retrieve():
 # Add prerequisite functions
 # Extract Ingredients
 def extract_ingredients(ingredients_section):
+    if ingredients_section is None:
+        return None
+
     ingredients_list = ingredients_section.find_all(class_="structured-ingredients__list-item")
     ingredients = []
 
@@ -81,6 +82,9 @@ def extract_ingredients(ingredients_section):
 
 # Extract instructions
 def extract_instructions(instructions_section):
+    if instructions_section is None:
+        return None
+
     instructions_list = instructions_section.find_all(class_="comp mntl-sc-block-group--LI mntl-sc-block mntl-sc-block-startgroup")
     instructions = []
 
@@ -152,24 +156,21 @@ def get_recipes():
         print("Error: Unable to fetch recipes. Status code:", response.status_code)
         return None
 
-def save_to_json_file(data, file_path):
-    file_exists = os.path.isfile(file_path)
-    
+def save_to_json_file_tasty(data):
     recipes = data.get("results", [])
-
-    with open(file_path, "a" if file_exists else "w") as f:
-        if file_exists:
-            f.write(",\n")
-        json.dump(recipes, f, indent=2)
-
+    return recipes
 
 def get_tasty():
     recipes = get_recipes()
 
     if recipes:
+        # Save the recipes to a JSON file and get the modified data
+        modified_recipes = save_to_json_file_tasty(recipes)
+
+        # Save the modified data to the bucket
         bucket_name = "BUCKET_NAME"  # Replace with your bucket name
         destination_blob_name = "tasty-output.json"
-        save_to_bucket(recipes, bucket_name, destination_blob_name)
+        save_to_bucket(modified_recipes, bucket_name, destination_blob_name)
     else:
         print("No recipes found.")
 
@@ -185,22 +186,9 @@ def get_random_recipe():
         print("Error: Unable to fetch recipes. Status code:", response.status_code)
         return None
 
-def save_to_json_file(data, file_path):
+def save_to_json_file_themealdb(data):
     meals = data.get("meals", [])
-
-    if os.path.exists(file_path):
-        with open(file_path, 'r') as f:
-            try:
-                existing_data = json.load(f)
-            except json.decoder.JSONDecodeError:
-                existing_data = []
-    else:
-        existing_data = []
-
-    existing_data.extend(meals)
-
-    with open(file_path, "w") as f:
-        json.dump(existing_data, f, indent=2)
+    return meals
 
 def get_mealdb():
     output_dir = "./"
@@ -222,11 +210,13 @@ def meal_db_get_reciples(number_of_recipes):
     random_recipe = get_random_recipe()
 
     if random_recipe:
+        modified_recipes = save_to_json_file_themealdb(random_recipe)
         bucket_name = "BUCKET_NAME"  # Replace with your bucket name
         destination_blob_name = "themealdb-output.json"
-        save_to_bucket(random_recipe, bucket_name, destination_blob_name)
+        save_to_bucket(modified_recipes, bucket_name, destination_blob_name)
     else:
         print("No recipe found.")
+
             
 # Google Cloud Function entry point
 def collection(event, context=None):
