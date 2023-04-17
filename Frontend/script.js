@@ -21,6 +21,9 @@ function setRequiredAttributes(container, isRequired) {
 
 document.getElementById('prediction-form').addEventListener('submit', async function(event) {
     event.preventDefault();
+    
+    // Loader to await the API response
+    document.getElementById('loader').style.display = 'block';
 
     const selectedModel = modelSelection.value;
     const feature1 = parseInt(document.getElementById('feature1').value);
@@ -56,6 +59,9 @@ document.getElementById('prediction-form').addEventListener('submit', async func
         },
         body: JSON.stringify({ input_features: input_features })
     });
+
+    // Hide loader
+    document.getElementById('loader').style.display = 'none';
 
     if (response.ok) {
         const prediction = await response.json();
