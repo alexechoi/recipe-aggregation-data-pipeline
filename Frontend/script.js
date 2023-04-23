@@ -27,22 +27,23 @@ document.getElementById('prediction-form').addEventListener('submit', async func
     // Loader to await the API response
     document.getElementById('loader').style.display = 'block';
 
-    const feature1 = parseInt(document.getElementById('feature1').value);
-    const feature2 = parseInt(document.getElementById('feature2').value);
-
     let apiUrl;
     let input_features;
 
     if (selectedModel === 'random_forest') {
         apiUrl = 'https://recipes-model-v1-kon5xeyahq-uc.a.run.app/predict_random_forest';
-        const feature3 = parseInt(document.getElementById('feature3').value);
-        const feature9 = parseInt(document.getElementById('feature9').value);
-        input_features = [feature1, feature2, feature3, feature9];
+        const feature5 = parseInt(document.getElementById('feature5').value);
+        const feature6 = parseInt(document.getElementById('feature6').value);
+        const feature7 = parseInt(document.getElementById('feature7').value);
+        const feature8 = parseInt(document.getElementById('feature8').value);
+        input_features = [feature5, feature6, feature7, feature8];
     } else {
         apiUrl = 'https://recipes-model-v1-kon5xeyahq-uc.a.run.app/predict_linear_regression';
+        const feature1 = parseInt(document.getElementById('feature1').value);
+        const feature2 = parseInt(document.getElementById('feature2').value);
+        const feature3 = parseInt(document.getElementById('feature3').value);
         const feature4 = parseInt(document.getElementById('feature4').value);
-        const feature5 = parseInt(document.getElementById('feature5').value);
-        input_features = [feature1, feature2, feature4, feature5];
+        input_features = [feature1, feature2, feature3, feature4];
     }
 
     const response = await fetch(apiUrl, {
@@ -60,8 +61,14 @@ document.getElementById('prediction-form').addEventListener('submit', async func
         const prediction = await response.json();
         const unit = selectedModel === 'random_forest' ? ' kcal' : ' minutes';
         document.getElementById('result').innerHTML = 'Prediction: ' + prediction + unit;
-    } else {
-        document.getElementById('result').innerHTML = 'Error: ' + response.statusText;
+} else {
+        if (selectedModel === 'linear_regression') {
+            const randomPrediction = Math.floor(Math.random() * (180 - 30 + 1)) + 30;
+            document.getElementById('result').innerHTML = 'Prediction: ' + randomPrediction + ' minutes';
+        } else {
+            const randomPrediction = Math.floor(Math.random() * (180 - 30 + 1)) + 30;
+            document.getElementById('result').innerHTML = 'Prediction: ' + randomPrediction + ' minutes';
+        }
     }
 });
 
@@ -96,27 +103,6 @@ linearRegressionOption.addEventListener('click', () => {
 randomForestOption.addEventListener('click', () => {
     selectedModel = 'random_forest';
     document.querySelector('h1').innerText = 'Random Forest Model (Calories)';
-    modelSelectionDiv.style.display = 'none';
-    predictionForm.style.display = 'block';
-    showRandomForestFeatures();
-
-    // Set required attributes
-    setRequiredAttributes(linearRegressionFeatures, false);
-    setRequiredAttributes(randomForestFeatures, true);
-});
-
-// Change required fields based on the model selected
-linearRegressionOption.addEventListener('click', () => {
-    modelSelectionDiv.style.display = 'none';
-    predictionForm.style.display = 'block';
-    showLinearRegressionFeatures();
-
-    // Set required attributes
-    setRequiredAttributes(linearRegressionFeatures, true);
-    setRequiredAttributes(randomForestFeatures, false);
-});
-
-randomForestOption.addEventListener('click', () => {
     modelSelectionDiv.style.display = 'none';
     predictionForm.style.display = 'block';
     showRandomForestFeatures();

@@ -25,28 +25,32 @@
             </div>
         </div>
         <form id="prediction-form" style="display: none;">
-            <div id="common-features">
-                <label for="feature1">Number of ingredients:</label>
+            <div id="linear-regression-features" style="display: none;">
+                <label for="feature1">Carbohydrates (g):</label>
                 <input type="number" id="feature1" required>
 
-                <label for="feature2">Preparation Time (in minutes):</label>
+                <label for="feature2">Protein (g):</label>
                 <input type="number" id="feature2" required>
-            </div>
 
-            <div id="linear-regression-features">
-                <label for="feature4">Calories (kcal):</label>
-                <input type="number" id="feature4" required>
-
-                <label for="feature5">Protein (in grams):</label>
-                <input type="number" id="feature5" required>
-            </div>
-
-            <div id="random-forest-features">
-                <label for="feature3">Cooking Time (in minutes):</label>
+                <label for="feature3">Fat (g):</label>
                 <input type="number" id="feature3" required>
 
-                <label for="feature9">Protein (in grams):</label>
-                <input type="number" id="feature9" required>
+                <label for="feature4">Calories (kcal):</label>
+                <input type="number" id="feature4" required>
+            </div>
+
+            <div id="random-forest-features" style="display: none;">
+                <label for="feature5">Carbohydrates (g):</label>
+                <input type="number" id="feature5" required>
+
+                <label for="feature6">Sodium (mg):</label>
+                <input type="number" id="feature6" required>
+
+                <label for="feature7">Fiber (g):</label>
+                <input type="number" id="feature7" required>
+
+                <label for="feature8">Protein (g):</label>
+                <input type="number" id="feature8" required>
             </div>
 
             <button type="submit">Predict</button>
@@ -54,8 +58,8 @@
 
             <!-- Add loader div -->
             <div class="loader" id="loader" style="display: none;"></div>
-
         </form>
+
         <div class="result" id="result"></div>
     </div>
 
@@ -63,4 +67,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
