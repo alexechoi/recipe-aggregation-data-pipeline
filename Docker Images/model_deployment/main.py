@@ -17,6 +17,9 @@ def load_model_from_gcs(bucket_name, model_path):
     model = joblib.load(io.BytesIO(model_data))
     return model
 
+def remove_negative_predictions(predictions):
+    return [max(0, prediction) for prediction in predictions]
+
 bucket_name = 'data-engineering-recipe-serving'
 linear_regression_model_path = 'models/linear_regression_model.pkl'
 random_forest_model_path = 'models/random_forest_model.pkl'
@@ -31,6 +34,7 @@ def predict_linear_regression():
         data = request.get_json()
         input_features = [data['input_features']]
         prediction = linear_regression_model.predict(input_features)
+        prediction = remove_negative_predictions(prediction)
         return jsonify(prediction.tolist())
     except Exception as e:
         logging.exception("Error occurred during prediction")
