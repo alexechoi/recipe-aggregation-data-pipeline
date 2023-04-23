@@ -37,21 +37,13 @@ document.getElementById('prediction-form').addEventListener('submit', async func
         apiUrl = 'https://recipes-model-v1-kon5xeyahq-ue.a.run.app/predict_random_forest';
         const feature3 = parseInt(document.getElementById('feature3').value);
         const feature9 = parseInt(document.getElementById('feature9').value);
-        const feature10 = parseInt(document.getElementById('feature10').value);
-        const feature11 = parseInt(document.getElementById('feature11').value);
-        const feature12 = parseInt(document.getElementById('feature12').value);
-        input_features = [feature1, feature2, feature3, feature9, feature10, feature11, feature12];
+        input_features = [feature1, feature2, feature3, feature9];
     } else {
         apiUrl = 'https://recipes-model-v1-kon5xeyahq-ue.a.run.app/predict_linear_regression';
         const feature4 = parseInt(document.getElementById('feature4').value);
         const feature5 = parseInt(document.getElementById('feature5').value);
-        const feature6 = parseInt(document.getElementById('feature6').value);
-        const feature7 = parseInt(document.getElementById('feature7').value);
-        const feature8 = parseInt(document.getElementById('feature8').value);
-        const feature13 = parseInt(document.getElementById('feature13').value);
-        input_features = [feature1, feature2, feature4, feature5, feature6, feature7, feature8, feature13];
-}
-
+        input_features = [feature1, feature2, feature4, feature5];
+    }
 
     const response = await fetch(apiUrl, {
         method: 'POST',
@@ -69,8 +61,8 @@ document.getElementById('prediction-form').addEventListener('submit', async func
         const unit = selectedModel === 'random_forest' ? ' kcal' : ' minutes';
         document.getElementById('result').innerHTML = 'Prediction: ' + prediction + unit;
     } else {
-    document.getElementById('result').innerHTML = 'Error: ' + response.statusText;
-}
+        document.getElementById('result').innerHTML = 'Error: ' + response.statusText;
+    }
 });
 
 // Back Button
