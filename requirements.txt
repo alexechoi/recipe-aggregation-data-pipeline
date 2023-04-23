@@ -1,9 +1,15 @@
+avro-python3
 beautifulsoup4
 google-cloud-storage
+joblib google-cloud-storage
+mysql-connector
 mysql-connector-python
 mysql-connector-python neo4j
+neo4j
+neo4j pandas scikit-learn fastparquet
 pandas pymysql
 pandas scikit-learn
+pandas scikit-learn neo4j
 pymysql
 requests
 tqdm
