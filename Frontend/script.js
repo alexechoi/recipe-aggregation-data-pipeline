@@ -34,12 +34,12 @@ document.getElementById('prediction-form').addEventListener('submit', async func
     let input_features;
 
     if (selectedModel === 'random_forest') {
-        apiUrl = 'https://recipes-model-v1-kon5xeyahq-ue.a.run.app/predict_random_forest';
+        apiUrl = 'https://recipes-model-v1-kon5xeyahq-uc.a.run.app/predict_random_forest';
         const feature3 = parseInt(document.getElementById('feature3').value);
         const feature9 = parseInt(document.getElementById('feature9').value);
         input_features = [feature1, feature2, feature3, feature9];
     } else {
-        apiUrl = 'https://recipes-model-v1-kon5xeyahq-ue.a.run.app/predict_linear_regression';
+        apiUrl = 'https://recipes-model-v1-kon5xeyahq-uc.a.run.app/predict_linear_regression';
         const feature4 = parseInt(document.getElementById('feature4').value);
         const feature5 = parseInt(document.getElementById('feature5').value);
         input_features = [feature1, feature2, feature4, feature5];
