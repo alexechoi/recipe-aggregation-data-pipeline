@@ -35,7 +35,7 @@ def predict_linear_regression():
         input_features = [data['input_features']]
         prediction = linear_regression_model.predict(input_features)
         prediction = remove_negative_predictions(prediction)
-        return jsonify(prediction.tolist())
+        return jsonify(prediction[0].tolist())
     except Exception as e:
         logging.exception("Error occurred during prediction")
         return str(e), 500
