@@ -35,16 +35,16 @@ def run_script():
         # Remove any text within parentheses
         cleaned_ingredient = re.sub(r'\([^)]*\)', '', ingredient)
         
-        # Tokenize the string into words
+        # Get individual words from the strings
         words = nltk.word_tokenize(cleaned_ingredient)
 
         # Filter out stopwords
         filtered_words = [word for word in words if word.lower() not in stop_words]
 
-        # Use NLTK's POS tagger to identify and extract nouns
+        # Specifically extract nouns
         nouns = [word for word, pos in nltk.pos_tag(filtered_words) if pos in ['NN', 'NNS']]
 
-        # Check if the extracted noun is a food item in WordNet
+        # Use WordNet to match nouns to food items
         food_nouns = []
         for noun in nouns:
             synsets = wordnet.synsets(noun, pos=wordnet.NOUN)
@@ -52,23 +52,22 @@ def run_script():
             if food_related:
                 food_nouns.append(noun)
         
-        # Join the food nouns with spaces and return the result
         return ' '.join(food_nouns)
 
     # Connect to the MySQL database
     cnx = mysql.connector.connect(
-        host='',
-        user='',
-        password='',
-        database=''
+        host='***REMOVED***',
+        user='root',
+        password='***REMOVED***',
+        database='main'
     )
 
     print("Connected to MySQL")
 
     # Neo4j connection
     neo4j_connection = GraphDatabase.driver(
-        uri="",
-        auth=("neo4j", "")
+        uri="***REMOVED***",
+        auth=("neo4j", "***REMOVED***")
     )
 
     # Create a Neo4j session
