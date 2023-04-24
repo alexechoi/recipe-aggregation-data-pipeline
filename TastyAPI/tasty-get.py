@@ -4,7 +4,7 @@ import os
 import random
 import string
 
-API_KEY = "***REMOVED***"  # Replace this with your actual API key
+API_KEY = "c95b8b6459msheafd8f7c7d4aafdp19ce79jsn3bb738211983"  # Replace this with your actual API key
 BASE_URL = "https://tasty.p.rapidapi.com/recipes/list"
 
 headers = {

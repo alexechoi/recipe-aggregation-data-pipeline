@@ -25,8 +25,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s: %(mes
 def train_models():
     # Neo4j connection
     neo4j_connection = GraphDatabase.driver(
-        uri="***REMOVED***",
-        auth=("neo4j", "***REMOVED***")
+        uri="neo4j+s://52fe4988.databases.neo4j.io",
+        auth=("neo4j", "xjpTjnzkjRapCy1LbO64Objiic2MBtfbKvHSA88xMM0")
     )
 
     def upload_to_gcs(local_file, gcs_path):
@@ -83,8 +83,8 @@ def train_models():
 
     # Neo4j connection
     neo4j_connection = GraphDatabase.driver(
-        uri="***REMOVED***",
-        auth=("neo4j", "***REMOVED***")
+        uri="neo4j+s://52fe4988.databases.neo4j.io",
+        auth=("neo4j", "xjpTjnzkjRapCy1LbO64Objiic2MBtfbKvHSA88xMM0")
     )
 
     def fetch_data(tx):

@@ -4,8 +4,8 @@ import os
 import random
 import string
 
-APP_ID = "***REMOVED***"  # Replace this with your actual App ID
-APP_KEY = "***REMOVED***"  # Replace this with your actual App Key
+APP_ID = "906356a2"  # Replace this with your actual App ID
+APP_KEY = "b3e06ed20c6cb277f6c263bf8e231cad"  # Replace this with your actual App Key
 BASE_URL = "https://api.edamam.com/search"
 
 def get_recipes_by_random_character():

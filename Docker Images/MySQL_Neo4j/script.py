@@ -56,9 +56,9 @@ def run_script():
 
     # Connect to the MySQL database
     cnx = mysql.connector.connect(
-        host='***REMOVED***',
+        host='35.229.109.87',
         user='root',
-        password='***REMOVED***',
+        password='Password-1',
         database='main'
     )
 
@@ -66,8 +66,8 @@ def run_script():
 
     # Neo4j connection
     neo4j_connection = GraphDatabase.driver(
-        uri="***REMOVED***",
-        auth=("neo4j", "***REMOVED***")
+        uri="neo4j+s://52fe4988.databases.neo4j.io",
+        auth=("neo4j", "xjpTjnzkjRapCy1LbO64Objiic2MBtfbKvHSA88xMM0")
     )
 
     # Create a Neo4j session
