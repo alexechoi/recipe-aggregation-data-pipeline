@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "spartan-vertex-382711",
+  "private_key_id": "840dfa13e03910ad4445dc73dd5358b9c6c01bbc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDiKCF1LzIfw4pe\nqRmJllE5U8owKQtb8VSpkeNIbmpCLtws9hCQg9Jdemi5sYSgqqvTSwMDTeda986K\nBOHCwXUOszBaLUfQbQqnEbkHZU7d9jOxdNy5I3o4awyh4VFck7zz/tFzi2aYna7O\nQnCMwcFjaIRJorSRVGyx6OPa4jYFPbeGcHOU5auTuDtR6L7E4MYLUFd1b61CvRuy\nIY2/gat0oGHuaB9YtFhvIoJr/SuI8Hf+SsHN4wq+Ll99m8y/dMhUJ8XTyV4Y/xRz\nRlmnOkyg56WXSavAYU/ALnQNEIDpymbjsjtmqC53HDMFU7R3XyEbWGpbz02qn+Gr\nZasPmD6bAgMBAAECggEABNU3tdHe39flZpV1gr+wF6oHOZU+9WWIWiFQepVFdwma\nUemmO/hdL/s0Lrew7mAHUPoa4+Cvz31ZMBDfpDJPJpPEtkCedsFFx4E084gCMfMX\ncrTdHKW58Ge1OuZePzy2/n3VCwORGzTPbf/0eMWRNOcgYJR2CF8F/Z1M9Tn9TopT\nT0mWUEgxn/Fsuq1HwXZLpFok6PnuvseDi1saHz49LEMRtVYGEUQlOHGFrXhZoXmh\nvBDRVizojUeGSlz9BuUGEByosMBgHrS3/JaBe5NJTRRzLVwHmrGlFfkp1rvj5i2h\nRgwGQm5krNDeZQ37q2hjulpuLUbZlN1QObcmIboMXQKBgQDzvrkgbBVo2O8TYU1P\na9bF8xnJaNMfbp+eqS7V8pdAHZum5l6mol/K9SmLc0cFqFilZoI4moLSxwBkMIzu\noqg++He5W20pUf3rNDOtw6O6E0c8Evm+vOa6LEPR/lSM1KJNgacSFhNhOIhAPxC/\nGcKMDPmhpdamtrABzUFKnF/A5QKBgQDthwbSId22gNTqIz0gbcbOKlk8xrjwCltl\nS7tWCPz87vc1nFSGdcQO4Hlx/ep/18VkDyMJJ/967Ke1T+6IllinfngPIxNjGafs\naXtl9NAVRhvuty6SrGykFpEw1jWrItxXOcZgKRH+psLjKOZsv6suSGCypYPfww80\n87wH0ZmJfwKBgHCbKyGsbVOr7P9yE2pesrFutvoSoH7D96AwHwAee/vV8ePwR8gJ\n+eFk09Wl4yjc9l8rdXu6/jdsUmT2/RT+NmYpGf6bG1pck8dGrZ1YZdqAL4e0aIbS\n9HEMJCTur5cEYRsXi9zSMA/ZMzEjMZRnzTYwhF9Go10Px059ye0zQxV1AoGBAKHV\nWcRZ5qGt7WMJV2B86vMUz3AlRWPm6pZ9nsnjndsHRc91D/H80vP/5T7RbbBk5sxh\ns9FNOzgZfbp/F1pgdU7JUCugDll65Xqh871nq06TUfy3Ojgc2niCF7JagH51ZgLY\nDlz+HpCONkJnX3fAr3T9Q0T0mIEgeX/ugLIjEKUpAoGAFXMJDi+BEJMR4ddHkvkH\n88X4pr4llOdV9DMelS1YlkE9yBH8531n/jOYzbIKvuoDengR+DMc73pZOTA2bikS\n1BrD4jDWW2pLrgieAVzhHymW9aCGEfT7wI/UsIsOdCPkYpdnhW3wHGDib/wDJfDb\npbpxmRnh8l03IfD/3RjYXRQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "operations@spartan-vertex-382711.iam.gserviceaccount.com",
+  "client_id": "109934964636332198517",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/operations%40spartan-vertex-382711.iam.gserviceaccount.com"
+}
