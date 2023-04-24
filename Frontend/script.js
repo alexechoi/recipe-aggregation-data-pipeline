@@ -63,11 +63,9 @@ document.getElementById('prediction-form').addEventListener('submit', async func
         document.getElementById('result').innerHTML = 'Prediction: ' + prediction + unit;
 } else {
         if (selectedModel === 'linear_regression') {
-            const randomPrediction = Math.floor(Math.random() * (180 - 30 + 1)) + 30;
-            document.getElementById('result').innerHTML = 'Prediction: ' + randomPrediction + ' minutes';
+            document.getElementById('result').innerHTML = 'API Error';
         } else {
-            const randomPrediction = Math.floor(Math.random() * (180 - 30 + 1)) + 30;
-            document.getElementById('result').innerHTML = 'Prediction: ' + randomPrediction + ' minutes';
+            document.getElementById('result').innerHTML = 'API Error';
         }
     }
 });
